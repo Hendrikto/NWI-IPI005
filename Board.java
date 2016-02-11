@@ -10,6 +10,7 @@ public class Board {
     public final int width;
     public final int height;
     private final Position initialKnightPosition;
+    private final Position centerPosition;
     private final int[][] visited;
     private final Move[] history;
     private Position knightPosition;
@@ -24,6 +25,7 @@ public class Board {
     public Board (int width, int height, Position start) {
         this.width = width;
         this.height = height;
+        this.centerPosition = new Position(width / 2, height / 2);
         this.initialKnightPosition = start;
         this.knightPosition = start;
         this.visited = new int[width][height];
