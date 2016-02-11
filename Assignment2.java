@@ -17,6 +17,7 @@ public class Assignment2 {
      */
     public static void main(String[] args) {
         Board b = new Board(BOARD_WIDTH, BOARD_HEIGHT, new Position(0, 0));
+        System.out.println("Solution:");
         Move.printMoves(b.solve());
         System.out.println(b);
     }
