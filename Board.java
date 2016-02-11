@@ -10,7 +10,7 @@ public class Board {
     public final int width;
     public final int height;
     private final Position initialKnightPosition;
-    private final boolean[][] visited;
+    private final int[][] visited;
     private final Move[] history;
     private Position knightPosition;
     
@@ -26,8 +26,8 @@ public class Board {
         this.height = height;
         this.initialKnightPosition = start;
         this.knightPosition = start;
-        this.visited = new boolean[width][height];
-        this.visited[start.x][start.y] = true;
+        this.visited = new int[width][height];
+        this.visited[start.x][start.y] = 1;
         this.history = new Move[width * height - 1];
     }
     
@@ -56,9 +56,9 @@ public class Board {
      * 
      * @param m The move to apply.
      */
-    public void apply (Move m) {
+    public void apply (Move m, int step) {
         this.knightPosition = getNewPosition(m);
-        this.visited[knightPosition.x][knightPosition.y] = true;
+        this.visited[knightPosition.x][knightPosition.y] = step;
     }
     
     /**
@@ -67,7 +67,7 @@ public class Board {
      * @param m The move to revert.
      */
     public void revert (Move m) {
-        this.visited[knightPosition.x][knightPosition.y] = false;
+        this.visited[knightPosition.x][knightPosition.y] = 0;
         this.knightPosition = getNewPosition(m.invert());
     }
     
@@ -78,7 +78,7 @@ public class Board {
      * @return Whether or not the knight has already visited position p.
      */
     public boolean isVisited (Position p) {
-        return visited[p.x][p.y];
+        return visited[p.x][p.y] != 0;
     }
     
     /**
@@ -87,7 +87,7 @@ public class Board {
      * @return A history of moves that lead to a solution.
      */
     public Move[] solve () {
-        this.solve(history, 1, width * height - 1);
+        this.solve(history, 2, width * height - 1);
         return history;
     }
     
@@ -126,9 +126,9 @@ public class Board {
         }
         for (Move moveCandidate: Move.getKnightMoves()) {
             if (moveCandidate.applicableTo(this)) {
-                this.apply(moveCandidate);
+                this.apply(moveCandidate, step);
                 if (this.solve(history, step + 1, notVisited - 1)) {
-                    history[step - 1] = moveCandidate;
+                    history[step - 2] = moveCandidate;
                     return true;
                 }
                 this.revert(moveCandidate);
