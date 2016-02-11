@@ -84,6 +84,7 @@ public class Board {
     /**
      * Public interface for solving.
      * 
+     * @param open Whether or not the path is allowed to be open.
      * @return A history of moves that lead to a solution.
      */
     public Move[] solve (boolean open) {
@@ -115,9 +116,9 @@ public class Board {
     /**
      * Solve the puzzle using backtracking.
      * 
-     * @param history History of moves that lead to the current state.
      * @param step Number of the current step.
      * @param notVisited Number of fields not yet visited.
+     * @param open Whether the found path may be open.
      * @return Whether or not there is a solution to the current state.
      */
     private boolean solve (int step, int notVisited, boolean open) {
