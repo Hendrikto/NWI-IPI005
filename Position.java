@@ -1,5 +1,7 @@
 package assignment2;
 
+import static java.lang.Math.abs;
+
 /**
  * Represents a position (on a board).
  *
@@ -59,6 +61,17 @@ public class Position {
             }
         }
         return false;
+    }
+    
+    /**
+     * Calculate the distance between two positions.
+     * 
+     * @param p Position to calculate the distance to.
+     * @return The distance to position p.
+     */
+    public int distanceTo (Position p) {
+        return (abs(this.x - p.x)
+                + abs(this.y - p.y));
     }
     
     /**
