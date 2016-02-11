@@ -86,8 +86,8 @@ public class Board {
      * 
      * @return A history of moves that lead to a solution.
      */
-    public Move[] solve () {
-        this.solve(history, 2, width * height - 1);
+    public Move[] solve (boolean open) {
+        this.solve(2, width * height - 1, open);
         return history;
     }
     
@@ -120,14 +120,15 @@ public class Board {
      * @param notVisited Number of fields not yet visited.
      * @return Whether or not there is a solution to the current state.
      */
-    private boolean solve (Move[] history, int step, int notVisited) {
+    private boolean solve (int step, int notVisited, boolean open) {
         if (notVisited == 0) {
-            return true;
+            return open
+                   || knightPosition.canReach(initialKnightPosition, Move.getKnightMoves());
         }
         for (Move moveCandidate: Move.getKnightMoves()) {
             if (moveCandidate.applicableTo(this)) {
                 this.apply(moveCandidate, step);
-                if (this.solve(history, step + 1, notVisited - 1)) {
+                if (this.solve(step + 1, notVisited - 1, open)) {
                     history[step - 2] = moveCandidate;
                     return true;
                 }
