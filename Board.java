@@ -124,7 +124,7 @@ public class Board {
     private boolean solve (int step, int notVisited, boolean open) {
         if (notVisited == 0) {
             return open
-                   || knightPosition.canReach(initialKnightPosition, Move.getKnightMoves());
+                    || knightPosition.canReach(initialKnightPosition, Move.getKnightMoves());
         }
         for (Move moveCandidate: Move.getKnightMoves()) {
             if (moveCandidate.applicableTo(this)) {
