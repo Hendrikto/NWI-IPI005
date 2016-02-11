@@ -75,6 +75,16 @@ public class Position {
     }
     
     /**
+     * Apply move m to this position.
+     * 
+     * @param m Move to apply to this.
+     * @return A new position calculated by applying move m to this.
+     */
+    public Position apply (Move m) {
+        return new Position(this.x + m.x, this.y + m.y);
+    }
+    
+    /**
      * Turn the position into a string.
      * 
      * @return A string containing relevant information about the position.
