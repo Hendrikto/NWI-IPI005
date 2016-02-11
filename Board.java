@@ -11,7 +11,7 @@ public class Board {
     public final int height;
     private final Position initialKnightPosition;
     private final boolean[][] visited;
-    private Move[] history;
+    private final Move[] history;
     private Position knightPosition;
     
     /**
