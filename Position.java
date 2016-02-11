@@ -41,8 +41,24 @@ public class Position {
      * @return Whether or not the position p has the same coordinates as this.
      */
     public boolean equals (Position p) {
-        return ((this.x == p.x)
+        return (this.x == p.x
                 && this.y == p.y);
+    }
+    
+    /**
+     * Check if position p can be reached from this with one of the moves.
+     * 
+     * @param p Position that this tried to reach.
+     * @param moves The moves this uses to reach p.
+     * @return Whether or not position p can be reached from this using one of the moves.
+     */
+    public boolean canReach(Position p, Move[] moves) {
+        for (Move m: moves) {
+            if (new Position(this.x + m.x, this.y + m.y).equals(p)) {
+                return true;
+            }
+        }
+        return false;
     }
     
     /**
