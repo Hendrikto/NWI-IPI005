@@ -28,7 +28,7 @@ public class Move {
     public static void printMoves(Move[] moves) {
         int step = 1;
         for (Move m: moves) {
-            System.out.println("Step " + step++ + ": " + m);
+            System.out.println(String.format("Step %2d: %s", step++, m));
         }
     }
     
