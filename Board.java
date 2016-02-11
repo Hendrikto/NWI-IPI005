@@ -11,6 +11,7 @@ public class Board {
     public final int height;
     private final Position initialKnightPosition;
     private final boolean[][] visited;
+    private Move[] history;
     private Position knightPosition;
     
     /**
@@ -27,6 +28,7 @@ public class Board {
         this.knightPosition = start;
         this.visited = new boolean[width][height];
         this.visited[start.x][start.y] = true;
+        this.history = new Move[width * height - 1];
     }
     
     /**
@@ -85,7 +87,6 @@ public class Board {
      * @return A history of moves that lead to a solution.
      */
     public Move[] solve () {
-        Move[] history = new Move[width * height - 1];
         this.solve(history, 1, width * height - 1);
         return history;
     }
