@@ -1,5 +1,7 @@
 package assignment2;
 
+import java.util.Arrays;
+
 /**
  * Represents the playing board.
  *
@@ -128,7 +130,9 @@ public class Board {
             return open
                     || knightPosition.canReach(initialKnightPosition, Move.getKnightMoves());
         }
-        for (Move moveCandidate: Move.getKnightMoves()) {
+        Move [] sortedMoves = Move.getKnightMoves();
+        Arrays.sort(sortedMoves, new MoveComparator(knightPosition, centerPosition).reversed());
+        for (Move moveCandidate: sortedMoves) {
             if (moveCandidate.applicableTo(this)) {
                 this.apply(moveCandidate, step);
                 if (this.solve(step + 1, notVisited - 1, open)) {
