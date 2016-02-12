@@ -103,18 +103,18 @@ public class Board {
      */
     @Override
     public String toString () {
-        String s = "";
+        StringBuilder s = new StringBuilder();
         for (int y = height - 1; y >= 0; y--) {
             for (int x = 0; x < width; x++) {
                 if (new Position(x, y).equals(knightPosition)) {
-                    s += "(" + visited[x][y] + ")\t";
+                    s.append("(").append(visited[x][y]).append(")\t");
                 } else {
-                    s += visited[x][y] + "\t";
+                    s.append(visited[x][y]).append("\t");
                 }
             }
-            s += "\n";
+            s.append("\n");
         }
-        return s;
+        return s.toString();
     }
     
     /**
