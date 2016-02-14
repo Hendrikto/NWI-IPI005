@@ -11,7 +11,7 @@ import static java.lang.Math.abs;
 public class Move {
     public final int x;
     public final int y;
-    private static final Move[] knightMoves = new Move[8];
+    private static final Move[] KNIGHT_MOVES = new Move[8];
     private static boolean knightMovesGenerated = false;
     
     /**
@@ -52,7 +52,7 @@ public class Move {
         if (!knightMovesGenerated) {
             generateKnightMoves();
         }
-        return knightMoves;
+        return KNIGHT_MOVES;
     }
     
     /**
@@ -90,7 +90,7 @@ public class Move {
             for (int y = -2; y <= 2; y++) {
                 Move candidate = new Move(x, y);
                 if (candidate.isKnightMove()) {
-                    knightMoves[pos++] = candidate;
+                    KNIGHT_MOVES[pos++] = candidate;
                 }
             }
         }
