@@ -32,7 +32,7 @@ public class MoveComparator implements Comparator<Move> {
      */
     @Override
     public int compare (Move a, Move b) {
-        return ((position.apply(a).distanceTo(centerPosition))
-                - (position.apply(b).distanceTo(centerPosition)));
+        return position.apply(a).distanceTo(centerPosition)
+                - position.apply(b).distanceTo(centerPosition);
     }
 }
