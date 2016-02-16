@@ -70,8 +70,8 @@ public class Position {
      * @return The distance to position p.
      */
     public int distanceTo (Position p) {
-        return (abs(this.x - p.x)
-                + abs(this.y - p.y));
+        return abs(this.x - p.x)
+                + abs(this.y - p.y);
     }
     
     /**
