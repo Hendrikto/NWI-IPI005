@@ -30,10 +30,10 @@ public class Position {
      * @return Whether or not the position lies on board b.
      */
     public boolean laysOn(Board b) {
-        return ((x < b.width)
-                && (x >= 0)
-                && (y < b.height)
-                && (y >= 0));
+        return x < b.width
+                && x >= 0
+                && y < b.height
+                && y >= 0;
     }
 
     /**
