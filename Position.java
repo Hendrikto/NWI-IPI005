@@ -56,7 +56,7 @@ public class Position {
      */
     public boolean canReach(Position p, Move[] moves) {
         for (Move m : moves) {
-            if (new Position(x + m.x, y + m.y).equals(p)) {
+            if (apply(m).equals(p)) {
                 return true;
             }
         }
