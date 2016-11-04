@@ -11,27 +11,27 @@ import java.util.Comparator;
 public class MoveComparator implements Comparator<Move> {
     private final Position position;
     private final Position centerPosition;
-    
+
     /**
      * Constructor method.
-     * 
+     *
      * @param position Current knight position.
      * @param center Center position of the board.
      */
-    public MoveComparator (Position position, Position center) {
+    public MoveComparator(Position position, Position center) {
         this.position = position;
         this.centerPosition = center;
     }
-    
+
     /**
      * Compare two moves.
-     * 
+     *
      * @param a First move to compare.
      * @param b Second move to compare.
      * @return The difference between the distance to the center after applying a and b respectively to position. (a - b)
      */
     @Override
-    public int compare (Move a, Move b) {
+    public int compare(Move a, Move b) {
         return position.apply(a).distanceTo(centerPosition)
                 - position.apply(b).distanceTo(centerPosition);
     }
