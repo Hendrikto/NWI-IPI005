@@ -28,12 +28,12 @@ public class Board {
     public Board (int width, int height, Position start) {
         this.width = width;
         this.height = height;
-        this.centerPosition = new Position(width / 2, height / 2);
-        this.initialKnightPosition = start;
-        this.knightPosition = start;
-        this.visited = new int[width][height];
-        this.visited[start.x][start.y] = 1;
-        this.history = new Move[width * height - 1];
+        centerPosition = new Position(width / 2, height / 2);
+        initialKnightPosition = start;
+        knightPosition = start;
+        visited = new int[width][height];
+        visited[start.x][start.y] = 1;
+        history = new Move[width * height - 1];
     }
     
     /**
@@ -62,8 +62,8 @@ public class Board {
      * @param m The move to apply.
      */
     public void apply (Move m, int step) {
-        this.knightPosition = getNewPosition(m);
-        this.visited[knightPosition.x][knightPosition.y] = step;
+        knightPosition = getNewPosition(m);
+        visited[knightPosition.x][knightPosition.y] = step;
     }
     
     /**
@@ -72,8 +72,8 @@ public class Board {
      * @param m The move to revert.
      */
     public void revert (Move m) {
-        this.visited[knightPosition.x][knightPosition.y] = 0;
-        this.knightPosition = getNewPosition(m.invert());
+        visited[knightPosition.x][knightPosition.y] = 0;
+        knightPosition = getNewPosition(m.invert());
     }
     
     /**
@@ -93,7 +93,7 @@ public class Board {
      * @return A history of moves that lead to a solution.
      */
     public Move[] solve (boolean open) {
-        this.solve(2, width * height - 1, open);
+        solve(2, width * height - 1, open);
         return history;
     }
     
@@ -130,12 +130,12 @@ public class Board {
         Arrays.sort(sortedMoves, new MoveComparator(knightPosition, centerPosition).reversed());
         for (Move moveCandidate: sortedMoves) {
             if (moveCandidate.applicableTo(this)) {
-                this.apply(moveCandidate, step);
-                if (this.solve(step + 1, notVisited - 1, open)) {
+                apply(moveCandidate, step);
+                if (solve(step + 1, notVisited - 1, open)) {
                     history[step - 2] = moveCandidate;
                     return true;
                 }
-                this.revert(moveCandidate);
+                revert(moveCandidate);
             }
         }
         return false;
