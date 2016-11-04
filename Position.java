@@ -43,8 +43,8 @@ public class Position {
      * @return Whether or not the position p has the same coordinates as this.
      */
     public boolean equals (Position p) {
-        return (this.x == p.x
-                && this.y == p.y);
+        return (x == p.x
+                && y == p.y);
     }
     
     /**
@@ -56,7 +56,7 @@ public class Position {
      */
     public boolean canReach(Position p, Move[] moves) {
         for (Move m: moves) {
-            if (new Position(this.x + m.x, this.y + m.y).equals(p)) {
+            if (new Position(x + m.x, y + m.y).equals(p)) {
                 return true;
             }
         }
@@ -70,8 +70,8 @@ public class Position {
      * @return The distance to position p.
      */
     public int distanceTo (Position p) {
-        return abs(this.x - p.x)
-                + abs(this.y - p.y);
+        return abs(x - p.x)
+                + abs(y - p.y);
     }
     
     /**
@@ -81,7 +81,7 @@ public class Position {
      * @return A new position calculated by applying move m to this.
      */
     public Position apply (Move m) {
-        return new Position(this.x + m.x, this.y + m.y);
+        return new Position(x + m.x, y + m.y);
     }
     
     /**
