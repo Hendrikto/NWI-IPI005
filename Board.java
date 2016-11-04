@@ -1,6 +1,7 @@
 package assignment2;
 
 import java.util.Arrays;
+import java.util.stream.Collectors;
 
 /**
  * Represents the playing board.
@@ -103,18 +104,13 @@ public class Board {
      */
     @Override
     public String toString () {
-        StringBuilder s = new StringBuilder();
-        for (int y = height - 1; y >= 0; y--) {
-            for (int x = 0; x < width; x++) {
-                if (new Position(x, y).equals(knightPosition)) {
-                    s.append("(").append(visited[x][y]).append(")\t");
-                } else {
-                    s.append(visited[x][y]).append("\t");
-                }
-            }
-            s.append("\n");
-        }
-        return s.toString();
+        return Arrays.stream(visited)
+                .map(line -> Arrays.stream(line)
+                        .mapToObj(String::valueOf)
+                        .collect(Collectors.joining("\t"))
+                ).collect(
+                        Collectors.joining("\n")
+                );
     }
     
     /**
