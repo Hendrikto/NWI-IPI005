@@ -43,8 +43,8 @@ public class Position {
      * @return Whether or not the position p has the same coordinates as this.
      */
     public boolean equals(Position p) {
-        return (x == p.x
-                && y == p.y);
+        return x == p.x
+                && y == p.y;
     }
 
     /**
