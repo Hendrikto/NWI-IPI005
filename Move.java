@@ -21,8 +21,8 @@ public class Move {
      * @param moveY Movement in the y direction (vertically).
      */
     public Move (int moveX, int moveY) {
-        this.x = moveX;
-        this.y = moveY;
+        x = moveX;
+        y = moveY;
     }
     
     public static void printMoves(Move[] moves) {
@@ -68,7 +68,7 @@ public class Move {
     }
     
     public Move invert () {
-        return new Move(-this.x, -this.y);
+        return new Move(-x, -y);
     }
     
     /**
