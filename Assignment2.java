@@ -9,10 +9,10 @@ package assignment2;
 public class Assignment2 {
     private static final int BOARD_WIDTH = 6;
     private static final int BOARD_HEIGHT = 6;
-    
+
     /**
      * Entry point.
-     * 
+     *
      * @param args the command line arguments
      */
     public static void main(String[] args) {
